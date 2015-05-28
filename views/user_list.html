@@ -1,0 +1,30 @@
+<h3>Users</h3>
+
+<table class="table table-striped">
+  <thead><tr>
+    <th>Edit</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Telephone</th>
+    <th>Street</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip</th>
+    
+  </tr></thead>
+  <tbody><tr ng-repeat="user in users">
+    <td>
+      <button class="btn" ng-click="editUser(user.email)">
+        <span class="glyphicon glyphicon-pencil"></span>  Edit
+      </button>
+    </td>
+    <td>{{ user.name }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.telephone }}</td>
+    <td>{{ user.street }}</td>
+    <td>{{ user.city }}</td>
+    <td>{{ user.state }}</td>
+    <td>{{ user.zip }}</td>
+
+  </tr></tbody>
+</table>

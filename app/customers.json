@@ -1,0 +1,23 @@
+{
+    "records":
+    [
+    {
+    "name":"Nazar",
+    "email":"nazarmsx@gmail.com",
+    "telephone":"3335512",
+    "street":"Baker St.",
+    "city":"London",
+    "state":"UK",
+    "zip":"04024"
+    },
+    {
+    "name":"Bill",
+    "email":"bill@gmail.com",
+    "telephone":"4442211",
+    "street":"Somewher",
+    "city":"Paris",
+    "state":"France",
+    "zip":"2342"
+    }
+    ]
+}
