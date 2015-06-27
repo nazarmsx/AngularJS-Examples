@@ -1,61 +1,71 @@
-<button class="btn btn-success" ng-click="editUser('new')">
-<span class="glyphicon glyphicon-user"></span>  Create New User
-</button>
 <hr>
-
 <h3 ng-show="edit">Create New Customer:</h3>
-<h3 ng-hide="edit">Edit Customer:</h3>
+<h3 ng-hide="edit">Edit Customer:      </h3>
 
-<form class="form-horizontal">
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Name:</label>
-    <div class="col-sm-10">
-    <input type="text" ng-model="name" ng-disabled="!edit" placeholder="Name">
-    </div>
-  </div> 
- 
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Email:</label>
-    <div class="col-sm-10">
-    <input type="email" ng-model="email" placeholder="Email">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label">Telephone:</label>
-    <div class="col-sm-10">
-    <input type="text" ng-model="telephone" placeholder="Telephone">
-    </div>
-  </div>
-    
+<form  class="form-horizontal" name="myForm" novalidate>
     <div class="form-group">
-        
-    <label class="col-sm-2 control-label">Street:</label>
-    <div class="col-sm-10">
-    <input type="text" ng-model="street" placeholder="Street name">
+        <label class="col-sm-2 control-label">Name:</label>
+        <div class="col-sm-3">
+            <input type="email" name="name" ng-model="customer.name"  class="form-control" placeholder="Name" required >
+            <span style="color:red" ng-show="myForm.name.$dirty && myForm.name.$invalid">
+                <span ng-show="myForm.name.$error.required">Name is required.</span>               
+            </span>
+        </div>
     </div>
-  </div>
-       <div class="form-group">
-    <label class="col-sm-2 control-label">City:</label>
-    <div class="col-sm-10">
-    <input type="text" ng-model="city" placeholder="City">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Email:</label>
+        <div class="col-sm-3">
+            <input type="email" name="email" ng-model="customer.email" id="inputEmail" class="form-control" placeholder="Email address" required >
+            <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                <span ng-show="myForm.email.$error.required">Email is required.</span>
+                <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+            </span>
+        </div>
     </div>
-  </div>
-       <div class="form-group">
-    <label class="col-sm-2 control-label">State:</label>
-    <div class="col-sm-10">
-    <input type="text" ng-model="state" placeholder="State">
-    </div>
-  </div>
-       <div class="form-group">
-    <label class="col-sm-2 control-label">Zip:</label>
-    <div class="col-sm-10">
-    <input type="text" ng-model="zip" placeholder="Postal code">
-    </div>
-  </div>
-    
-</form>
 
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Telephone:</label>
+        <div class="col-sm-3">
+            <input type="text" ng-model="customer.telephone" class="form-control" placeholder="Telephone">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">State:</label>
+        <div class="col-sm-3">
+            <input type="text" ng-model="customer.state" class="form-control" placeholder="State">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">City:</label>
+        <div class="col-sm-3">
+            <input type="text" ng-model="customer.city" class="form-control" placeholder="City">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Street::</label>
+        <div class="col-sm-3">
+            <input type="email" name="name" ng-model="customer.street"  class="form-control" placeholder="Street name" >
+
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Name:</label>
+        <div class="col-sm-3">
+            <input type="email" name="name" ng-model="customer.zip"  class="form-control" placeholder="Postal code" >
+            <span style="color:red" ng-show="myForm.zip.$dirty && myForm.zip.$invalid">
+                <span ng-show="myForm.zip.$error.required">Name is required.</span>               
+            </span>
+        </div>
+    </div>
+</form>
 <hr>
-<button class="btn btn-success" ng-disabled="error || incomplete" ng-click="saveCustomerInfo()">
-<span class="glyphicon glyphicon-save"></span>  Save Changes
-</button>
+<div class="form-actions">
+    <button type="submit" ng-hide="edit" class="btn btn-primary"  ng-click="saveCustomerInfo()"><span class="glyphicon glyphicon-save"></span>  Save Changes</button>
+    <button type="button" ng-hide="edit" class="btn btn-danger" ng-click="cancelSavingPersonalInfo()">Cancel</button>
+    <button class="btn btn-success" ng-show="edit" ng-click="editUser('new')" ng-disabled="myForm.email.$dirty && myForm.email.$invalid" > 
+        <span class="glyphicon glyphicon-user"></span>  Create New User
+    </button>
+</div>
