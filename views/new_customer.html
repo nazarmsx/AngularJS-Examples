@@ -6,7 +6,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">Name:</label>
         <div class="col-sm-3">
-            <input type="email" name="name" ng-model="customer.name"  class="form-control" placeholder="Name" required >
+            <input type="text" name="name" ng-model="customer.name"  class="form-control" placeholder="Name" required >
             <span style="color:red" ng-show="myForm.name.$dirty && myForm.name.$invalid">
                 <span ng-show="myForm.name.$error.required">Name is required.</span>               
             </span>
@@ -43,19 +43,19 @@
     </div>
 
     <div class="form-group">
-        <label class="col-sm-2 control-label">Street::</label>
+        <label class="col-sm-2 control-label">Street:</label>
         <div class="col-sm-3">
-            <input type="email" name="name" ng-model="customer.street"  class="form-control" placeholder="Street name" >
+            <input type="text" name="name" ng-model="customer.street"  class="form-control" placeholder="Street name" >
 
         </div>
     </div>
 
 
     <div class="form-group">
-        <label class="col-sm-2 control-label">Name:</label>
+        <label class="col-sm-2 control-label">Postal code:</label>
         <div class="col-sm-3">
-            <input type="email" name="name" ng-model="customer.zip"  class="form-control" placeholder="Postal code" >
-            <span style="color:red" ng-show="myForm.zip.$dirty && myForm.zip.$invalid">
+            <input type="text" name="zip" ng-model="customer.zip"  class="form-control" placeholder="Postal code" >
+            <span style="color:red" ng-show="myForm.zip.$dirty">
                 <span ng-show="myForm.zip.$error.required">Name is required.</span>               
             </span>
         </div>
@@ -63,9 +63,9 @@
 </form>
 <hr>
 <div class="form-actions">
-    <button type="submit" ng-hide="edit" class="btn btn-primary"  ng-click="saveCustomerInfo()"><span class="glyphicon glyphicon-save"></span>  Save Changes</button>
+    <button type="submit" ng-hide="edit" class="btn btn-primary"  ng-click="updateUser()"><span class="glyphicon glyphicon-save"></span>  Save Changes</button>
     <button type="button" ng-hide="edit" class="btn btn-danger" ng-click="cancelSavingPersonalInfo()">Cancel</button>
-    <button class="btn btn-success" ng-show="edit" ng-click="editUser('new')" ng-disabled="myForm.email.$dirty && myForm.email.$invalid" > 
+    <button class="btn btn-success" ng-show="edit" ng-click="createUser()" ng-disabled="myForm.email.$dirty && myForm.email.$invalid" > 
         <span class="glyphicon glyphicon-user"></span>  Create New User
     </button>
 </div>
