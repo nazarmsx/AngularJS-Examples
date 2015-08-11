@@ -92,20 +92,38 @@ app.controller('userCtrl', function ($scope, $http) {
 
     $scope.deleteCustomer = function (id)
     {
+        //delete from model
+        for (var i=0,length=$scope.users.length;i<length;++i)
+        {
+        if($scope.users[i].id==id){
+            console.log(window.location.href+'./app/api/request.php?action=delete&user=' + JSON.stringify($scope.users[i]));
+            $http.get('./app/api/request.php?action=delete&user=' + JSON.stringify($scope.users[i])).success(function () {
+                    
+                });       
+        }    
+        }
+        //delete from view
         $scope.users = $scope.users
                 .filter(function (el) {
                     return el.id !== id;
                 });
         $scope.refresh();
     };
-
     $scope.cancelSavingPersonalInfo = function ()
     {
         $scope.reset();
         $scope.edit = true;
     };
-
-
+    $scope.createUser=function()
+    {
+    console.log(window.location.href+'./app/api/request.php?action=create&user=' + JSON.stringify($scope.getCustomerForm()));
+            $http.get('./app/api/request.php?action=create&user=' + JSON.stringify($scope.getCustomerForm())).success(function (response) {
+                 //console.log(JSON.parse(response));
+                 $scope.users.push(response); 
+                 $scope.refresh();   
+                });
+    
+    };
 });
 
 app.config(function ($routeProvider) {
@@ -118,10 +136,19 @@ app.config(function ($routeProvider) {
         templateUrl: './views/login.html',
         controller: 'loginController'
     })
-
-            // route for the contact page
+    // route for the contact page
             .when('/register', {
                 templateUrl: './views/register.html',
                 controller: 'registerController'
-            });
+            })
+            .otherwise({redirectTo:'/'});;
+});
+
+app.controller('registerController', function ($scope, $http) 
+{
+$scope.email='lol';
+});
+app.controller('loginController', function ($scope, $http) 
+{
+    
 });

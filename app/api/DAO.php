@@ -45,18 +45,23 @@ class UserDAO extends DAO {
    }
    return $users;
    }
-    public function create($table) {
-        
+    public function create($user) { //returns id of newly inserted user
+    $insert_address="INSERT INTO address (state,street,zip,city) VALUES ('".$user->state."','".$user->street."','".$user->zip."','".$user->city."') ";
+    ConnectionProvider::getConnection()->query($insert_address);
+    $sql="INSERT INTO user (telephone,name,email,address_id) VALUES ('".$user->telephone."','".$user->name."','".$user->email."','".ConnectionProvider::getConnection()->lastInsertId()."') ";
+    ConnectionProvider::getConnection()->query($sql);
+    return ConnectionProvider::getConnection()->lastInsertId();
     }
 
-    public function delete($table) {
-        
+    public function delete($user) {
+    $sql="DELETE FROM user WHERE user.id='".$user->id."'";  
+    ConnectionProvider::getConnection()->query($sql);
     }
 
     public function update($user) {
-    $sql="UPDATE user SET name='$user->name',email='$user->email',telephone='$user->telephone'".""." WHERE id=$user->id";
+    $sql="UPDATE address adr inner join user usr on adr.id =usr.address_id SET adr.state='$user->state',adr.street='$user->street',adr.zip='$user->zip',adr.city='$user->city',name='$user->name',email='$user->email',telephone='$user->telephone'  WHERE usr.id=$user->id;";
+    //$sql="UPDATE user SET name='$user->name',email='$user->email',telephone='$user->telephone' WHERE id=$user->id";
     ConnectionProvider::getConnection()->query($sql);
-    
     }
 
 }

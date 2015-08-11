@@ -4,6 +4,10 @@ body, html {
     background-repeat: no-repeat;
     //background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
 }
+h3{
+       text-align: center;
+
+}
 
 .card-container.card {
     width: 350px;

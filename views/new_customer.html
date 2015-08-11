@@ -6,16 +6,16 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">Name:</label>
         <div class="col-sm-3">
-            <input type="text" name="name" ng-model="customer.name"  class="form-control" placeholder="Name" required >
-            <span style="color:red" ng-show="myForm.name.$dirty && myForm.name.$invalid">
-                <span ng-show="myForm.name.$error.required">Name is required.</span>               
+            <input type="text" name="user_name" ng-model="customer.name"  class="form-control" placeholder="Name" ng-required="true" required>
+            <span style="color:red" ng-show="myForm.user_name.$dirty && myForm.user_name.$invalid">
+                <span ng-show="myForm.user_name.$error.required">Name is required.</span>               
             </span>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Email:</label>
         <div class="col-sm-3">
-            <input type="email" name="email" ng-model="customer.email" id="inputEmail" class="form-control" placeholder="Email address" required >
+            <input type="email" name="email" ng-model="customer.email" id="inputEmail" class="form-control" placeholder="Email address" required>
             <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
                 <span ng-show="myForm.email.$error.required">Email is required.</span>
                 <span ng-show="myForm.email.$error.email">Invalid email address.</span>
@@ -26,8 +26,10 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">Telephone:</label>
         <div class="col-sm-3">
-            <input type="text" ng-model="customer.telephone" class="form-control" placeholder="Telephone">
-        </div>
+            <input type="text" ng-model="customer.telephone" name="telephone" class="form-control" placeholder="Telephone" ng-maxlength="10" ng-minlength="10" ng-pattern="/^\d{10}$/">
+       
+       <span style="color:red" ng-show="myForm.telephone.$dirty && myForm.telephone.$invalid">The phone number field should be of 10 digits</span>
+       </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">State:</label>
@@ -63,9 +65,9 @@
 </form>
 <hr>
 <div class="form-actions">
-    <button type="submit" ng-hide="edit" class="btn btn-primary"  ng-click="updateUser()"><span class="glyphicon glyphicon-save"></span>  Save Changes</button>
+    <button type="submit" ng-hide="edit" class="btn btn-primary"  ng-click="updateUser()" ng-disabled=" myForm.$invalid"><span class="glyphicon glyphicon-save"></span>  Save Changes</button>
     <button type="button" ng-hide="edit" class="btn btn-danger" ng-click="cancelSavingPersonalInfo()">Cancel</button>
-    <button class="btn btn-success" ng-show="edit" ng-click="createUser()" ng-disabled="myForm.email.$dirty && myForm.email.$invalid" > 
+    <button class="btn btn-success" ng-show="edit" ng-click="createUser()" ng-disabled="myForm.$pristine || myForm.$invalid" > 
         <span class="glyphicon glyphicon-user"></span>  Create New User
     </button>
 </div>
