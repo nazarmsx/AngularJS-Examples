@@ -40,3 +40,12 @@ class ReadUserCommand implements DbCommand
     return $res;
     }
 }
+class RegisterUserCommand implements DbCommand
+{
+    public function execute() {
+    $user=json_decode($_GET['user']);
+    $dao=new AccountDAO();
+    $dao->create($user);
+    }
+
+}

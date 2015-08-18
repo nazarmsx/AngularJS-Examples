@@ -13,7 +13,7 @@ class HttpDispatcher extends Dispatcher
     if($action =='create') return new CreateUserCommand();
     if($action =='delete') return new DeleteUserCommand();
     if($action =='read') return new ReadUserCommand();
-
+    if($action =='register') return new RegisterUserCommand ();
     return null;
     }
 }

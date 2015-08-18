@@ -1,6 +1,6 @@
 var app = angular.module('myApp', ['ngRoute']);
 
-app.controller('userCtrl', function ($scope, $http) {
+app.controller('crudController', function ($scope, $http) {
 
     $scope.getCustomerForm = function ()
     {
@@ -131,24 +131,29 @@ app.config(function ($routeProvider) {
             // route for the home page
             .when('/', {
                 templateUrl: './views/home.html',
-                controller: 'userCtrl'
+                controller: 'homeController'
             }).when('/login', {
-        templateUrl: './views/login.html',
-        controller: 'loginController'
-    })
+                templateUrl: './views/login.html',
+                controller: 'loginController'
+            })
     // route for the contact page
-            .when('/register', {
+            .when('/crud', {
+                templateUrl: './views/crud.html',
+                controller: 'crudController'
+            }).when('/register', {
                 templateUrl: './views/register.html',
                 controller: 'registerController'
             })
             .otherwise({redirectTo:'/'});;
 });
 
-app.controller('registerController', function ($scope, $http) 
-{
-$scope.email='lol';
-});
+
 app.controller('loginController', function ($scope, $http) 
+{
+    
+});
+
+app.controller('homeController', function ($scope, $http) 
 {
     
 });

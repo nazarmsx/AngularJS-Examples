@@ -1,6 +1,6 @@
 <div class="card card-container">
 
-    <p id="profile-name" class="profile-name-card">Register</p>
+    <p id="profile-name" class="profile-name-card">Fill in the form!</p>
     <form   ng-controller="registerController" 
             name="myForm" novalidate class="form-signin">
         <span id="reauth-email" class="reauth-email"></span>
@@ -13,14 +13,26 @@
         </p>
 
     <p>
-            <input  type="password" name="password" ng-model="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <input  type="password" name="password" ng-model="password"  id="inputPassword" class="form-control" placeholder="Password" required>
             <span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
                 <span ng-show="myForm.password.$error.required">Password is required.</span>
+            </span>
     </p>
     <p>
-    <input  type="password" name="passwordConfirm" ng-model="passwordConfirm" id="inputPassword" class="form-control" placeholder="Password Confirm" required>    
+    <input  type="password" name="passwordConfirm" ng-model="passwordConfirm" password-validate id="inputPassword" class="form-control" placeholder="Password Confirm" required>    
+    
+    <span style="color:red" ng-show="myForm.passwordConfirm.$dirty && myForm.passwordConfirm.$invalid">
+                <span ng-show="myForm.passwordConfirm.$error.required">Password confirmation is required.</span>
+                <span ng-show="myForm.passwordConfirm.$error.passwordValidate">Passwords are different!</span>
+
+    </span>
     </p>
-        <button ng-click="onLogin()" ng-disabled="myForm.password.$dirty && myForm.password.$invalid || myForm.email.$dirty && myForm.email.$invalid"  class="btn btn-lg btn-primary btn-block btn-signin"  type="submit">Sign in</button>
+        <button ng-click="proceedRegistration()" ng-disabled="myForm.password.$dirty && myForm.password.$invalid || myForm.password.$pristine 
+                    || myForm.passwordConfirm.$pristine || myForm.email.$pristine 
+                    ||  myForm.email.$dirty && myForm.email.$invalid 
+                    || myForm.passwordConfirm.$dirty && myForm.passwordConfirm.$invalid
+                    "  class="btn btn-lg btn-primary btn-block btn-signin"  type="submit">Register</button>
+        
     </form><!-- /form -->
 
 </div><!-- /card-container -->

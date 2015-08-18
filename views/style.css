@@ -4,10 +4,15 @@ body, html {
     background-repeat: no-repeat;
     //background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
 }
-h3{
+h1{
        text-align: center;
-
+       font-family: 'Comic';
 }
+a{
+   font-size: 20px; 
+}
+
+
 
 .card-container.card {
     width: 350px;

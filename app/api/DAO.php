@@ -60,8 +60,32 @@ class UserDAO extends DAO {
 
     public function update($user) {
     $sql="UPDATE address adr inner join user usr on adr.id =usr.address_id SET adr.state='$user->state',adr.street='$user->street',adr.zip='$user->zip',adr.city='$user->city',name='$user->name',email='$user->email',telephone='$user->telephone'  WHERE usr.id=$user->id;";
-    //$sql="UPDATE user SET name='$user->name',email='$user->email',telephone='$user->telephone' WHERE id=$user->id";
     ConnectionProvider::getConnection()->query($sql);
+    }
+
+}
+
+class AccountDAO extends DAO{
+    public function create($data) {
+    $sql="INSERT INTO accounts (email,password) VALUES ('".$data->email."','".sha1($data->password)."') ";
+   echo $sql;
+    ConnectionProvider::getConnection()->query($sql);
+    }
+
+    public function delete($table) {
+        
+    }
+
+    public function read($id) {
+        
+    }
+
+    public function readAll() {
+        
+    }
+
+    public function update($table) {
+        
     }
 
 }
