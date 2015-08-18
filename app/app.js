@@ -144,11 +144,15 @@ app.config(function ($routeProvider) {
                 templateUrl: './views/register.html',
                 controller: 'registerController'
             })
+            .when('/after_register', {
+                templateUrl: './views/afterregister.html',
+                controller: 'afterRegisterController'
+            })
             .otherwise({redirectTo:'/'});;
 });
 
 
-app.controller('loginController', function ($scope, $http) 
+app.controller('afterRegisterController', function ($scope) 
 {
     
 });
