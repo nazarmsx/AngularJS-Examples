@@ -19,7 +19,7 @@ $scope.proceedRegistration=function()
 {
 $http.get("./app/api/request.php?action=register&user="+JSON.stringify($scope.getUser()))
             .success(function (response) {
-            $location.path('/login'); 
+            $location.path('/after_register'); 
             });
 };
 });

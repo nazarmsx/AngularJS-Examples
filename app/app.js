@@ -22,7 +22,8 @@ app.controller('crudController', function ($scope, $http) {
     };
     $scope.reset();
 
-    $http.get("./app/api/request.php?action=read")
+            //$http.get("./app/api/request.php?action=read")
+            $http.get("./app/customers.json")
             .success(function (response) {
                 $scope.users = response.records;
                 $scope.filteredUsers = response.records.slice(0, 10);

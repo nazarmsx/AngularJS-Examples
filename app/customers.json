@@ -1,7 +1,7 @@
 {
     "records":
     [
-    {
+    {"id":1,
     "name":"Nazar",
     "email":"nazarmsx@gmail.com",
     "telephone":"3335512",
@@ -10,7 +10,7 @@
     "state":"UK",
     "zip":"04024"
     },
-    {
+    {"id":2,
     "name":"Bill",
     "email":"bill@gmail.com",
     "telephone":"4442211",
