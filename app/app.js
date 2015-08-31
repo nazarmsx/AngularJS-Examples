@@ -19,11 +19,13 @@ app.controller('crudController', function ($scope, $http) {
     $scope.master = {name: "", email: "", telephone: "", street: "", city: "", state: "", zip: ""};
     $scope.reset = function () {
         $scope.customer = angular.copy($scope.master);
+        $scope.myForm.$setPristine();
     };
-    $scope.reset();
+    //$scope.reset();
 
-            //$http.get("./app/api/request.php?action=read")
-            $http.get("./app/customers.json")
+            
+            //$http.get("./app/customers.json")
+            $http.get("./app/api/request.php?action=read")
             .success(function (response) {
                 $scope.users = response.records;
                 $scope.filteredUsers = response.records.slice(0, 10);
@@ -145,17 +147,24 @@ app.config(function ($routeProvider) {
                 templateUrl: './views/register.html',
                 controller: 'registerController'
             })
-            .when('/after_register', {
+            .when('/after_register/:email/', {
                 templateUrl: './views/afterregister.html',
                 controller: 'afterRegisterController'
+            }) .when('/after_login/', {
+                templateUrl: './views/after_login.html',
+                controller: 'afterLoginController'
             })
             .otherwise({redirectTo:'/'});;
 });
 
 
-app.controller('afterRegisterController', function ($scope) 
+app.controller('afterRegisterController', function ($scope,$routeParams) 
 {
-    
+   $scope.email=$routeParams.email;
+});
+app.controller('afterLoginController', function ($scope) 
+{
+   
 });
 
 app.controller('homeController', function ($scope, $http) 
