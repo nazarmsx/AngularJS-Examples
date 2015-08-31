@@ -10,7 +10,7 @@ class ConnectionProvider
          $hostname = "localhost";
 $user = "root";
 $password = "";
-$database = "users_data";
+$database = "user_data";
     if(self::$connection==null)
     {
     try {
