@@ -99,7 +99,7 @@ app.controller('crudController', function ($scope, $http) {
         for (var i=0,length=$scope.users.length;i<length;++i)
         {
         if($scope.users[i].id==id){
-            console.log(window.location.href+'./app/api/request.php?action=delete&user=' + JSON.stringify($scope.users[i]));
+            //console.log(window.location.href+'./app/api/request.php?action=delete&user=' + JSON.stringify($scope.users[i]));
             $http.get('./app/api/request.php?action=delete&user=' + JSON.stringify($scope.users[i])).success(function () {
                     
                 });       
@@ -119,7 +119,7 @@ app.controller('crudController', function ($scope, $http) {
     };
     $scope.createUser=function()
     {
-    console.log(window.location.href+'./app/api/request.php?action=create&user=' + JSON.stringify($scope.getCustomerForm()));
+   // console.log(window.location.href+'./app/api/request.php?action=create&user=' + JSON.stringify($scope.getCustomerForm()));
             $http.get('./app/api/request.php?action=create&user=' + JSON.stringify($scope.getCustomerForm())).success(function (response) {
                  //console.log(JSON.parse(response));
                  $scope.users.push(response); 
@@ -154,6 +154,10 @@ app.config(function ($routeProvider) {
                 templateUrl: './views/after_login.html',
                 controller: 'afterLoginController'
             })
+             .when('/currency/', {
+                templateUrl: './views/currency.html',
+                controller: 'currencyController'
+            })
             .otherwise({redirectTo:'/'});;
 });
 
@@ -162,12 +166,8 @@ app.controller('afterRegisterController', function ($scope,$routeParams)
 {
    $scope.email=$routeParams.email;
 });
-app.controller('afterLoginController', function ($scope) 
-{
-   
-});
 
-app.controller('homeController', function ($scope, $http) 
+app.controller('homeController', function ($scope,$routeParams) 
 {
-    
+  
 });

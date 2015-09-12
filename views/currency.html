@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row col-md-6 col-md-offset-2 custyle">
+        <table class="table table-striped custab">
+            <thead >
+            <tr >
+                <th></th>
+                <th ng-repeat="rate in ratesSources track by $index">{{rate}}</th>
+            </tr>
+            </thead>
+            <tr ng-repeat="(key, value) in receivedData ">
+                <td >{{key}}</td>
+                <td ng-repeat="v in value track by $index">{{v|number:3}}</td>
+
+
+            </tr>
+        </table>
+    </div>
+</div>
