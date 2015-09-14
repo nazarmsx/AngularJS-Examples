@@ -12,11 +12,12 @@ app.factory('ratesFactory', function (openExchangeRates, currencyApi, ecbInt)
 });
 
 
-app.controller('currencyController', function ($scope, ratesFactory, applicationConfig) {
+app.controller('currencyController', function ($scope,currencyData, ratesFactory, applicationConfig) {
 
     $scope.ratesSources = [];
     $scope.receivedData = {};
-
+    
+    
     for (var i = 0; i < applicationConfig.relativeCurrencies.length; i++) {
         $scope.receivedData[applicationConfig.relativeCurrencies[i]] = [];
     }
@@ -118,3 +119,14 @@ function EcbInt ($http, applicationConfig) {
 app.service('openExchangeRates', OpenExchangeRates);
 app.service('currencyApi', CurrencyApi);
 app.service('ecbInt',EcbInt);
+
+app.service('currencyData',function($http)
+{
+        this.url="http://www.localeplanet.com/api/auto/currencymap.json?name=Y";   //proxy script
+        this.getCurrencyAttributes = function () {
+        return $http.get(this.url);};
+        this.processRates = function (data) {
+        return data;
+        };
+    
+});

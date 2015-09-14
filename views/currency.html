@@ -3,7 +3,7 @@
         <table class="table table-striped custab">
             <thead >
             <tr >
-                <th></th>
+                <th>1 EURO</th>
                 <th ng-repeat="rate in ratesSources track by $index">{{rate}}</th>
             </tr>
             </thead>
@@ -14,5 +14,15 @@
 
             </tr>
         </table>
+        
+        <hr>
+       <label for="singleSelect"> Select end add relative currency: </label><br>
+    <select name="singleSelect" ng-model="data.singleSelect">
+      <option value="">---Select relative currency---</option> <!-- not selected / blank option -->
+      <option value="{{data.option1}}">Option 1</option> <!-- interpolation -->
+      <option value="option-2">Option 2</option>
+    </select>   
+               <button type="button" class="btn btn-primary " ng-click="generateFile()"> Add</button>
+      <br>
     </div>
 </div>
