@@ -2,6 +2,7 @@ var app = angular.module('myApp', ['ngRoute']);
 
 app.controller('crudController', function ($scope, $http) {
 
+    $scope.urlPrefix='http://temp1domain.eu.pn/AngularJS-Examples/';
     $scope.getCustomerForm = function ()
     {
         var customer = {
@@ -25,7 +26,7 @@ app.controller('crudController', function ($scope, $http) {
 
             
             //$http.get("./app/customers.json")
-            $http.get("./app/api/request.php?action=read")
+            $http.get($scope.urlPrefix+"/app/api/request.php?action=read")
             .success(function (response) {
                 $scope.users = response.records;
                 $scope.filteredUsers = response.records.slice(0, 10);
@@ -84,8 +85,7 @@ app.controller('crudController', function ($scope, $http) {
                 $scope.users[i] = $scope.getCustomerForm(); //update table
                 $scope.cancelSavingPersonalInfo();//clear form
                 
-                $http.get('./app/api/request.php?action=update&user=' + JSON.stringify($scope.users[i])).success(function () {
-                    console.log('./app/api/request.php?action=update&user=' + JSON.stringify($scope.users[i]));
+                $http.get($scope.urlPrefix+'/app/api/request.php?action=update&user=' + JSON.stringify($scope.users[i])).success(function () {
                 });//exucute request to server 
                 $scope.refresh();
                 break;
@@ -100,7 +100,7 @@ app.controller('crudController', function ($scope, $http) {
         {
         if($scope.users[i].id==id){
             //console.log(window.location.href+'./app/api/request.php?action=delete&user=' + JSON.stringify($scope.users[i]));
-            $http.get('./app/api/request.php?action=delete&user=' + JSON.stringify($scope.users[i])).success(function () {
+            $http.get($scope.urlPrefix+'/app/api/request.php?action=delete&user=' + JSON.stringify($scope.users[i])).success(function () {
                     
                 });       
         }    
@@ -120,7 +120,7 @@ app.controller('crudController', function ($scope, $http) {
     $scope.createUser=function()
     {
    // console.log(window.location.href+'./app/api/request.php?action=create&user=' + JSON.stringify($scope.getCustomerForm()));
-            $http.get('./app/api/request.php?action=create&user=' + JSON.stringify($scope.getCustomerForm())).success(function (response) {
+            $http.get($scope.urlPrefix+'/app/api/request.php?action=create&user=' + JSON.stringify($scope.getCustomerForm())).success(function (response) {
                  //console.log(JSON.parse(response));
                  $scope.users.push(response); 
                  $scope.refresh();   
